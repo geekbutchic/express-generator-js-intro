@@ -7,14 +7,29 @@ router.get("/", function (req, res, next) {
 });
 
 router.get("/date", (req, res, next) => {
-  let date = new Date().toLocaleDateString("en-US")
-  let time = new Date().toLocaleTimeString("en-US")
-  res.send(`Date: ${date} Local Time: ${time}`)
+  let date = new Date().toLocaleDateString("en-US");
+  let time = new Date().toLocaleTimeString("en-US");
+  res.send(`Date: ${date} Local Time: ${time}`);
 });
 
 router.get("/name", (req, res, next) => {
-  res.send(`Sonny Lee Valenzuela`)
+  res.send(`Sonny Lee Valenzuela`);
 });
 
+// router.get("/q", (req, res, next) => {
+//   console.log("request query: ", req.query);
+//   const firstName = req.query.firstName
+//   const lastName = req.query.lastName
+//   res.send(firstName)
+// });
+
+router.get("/myfavoritemovies", (req, res) => {
+  let movies = [
+    "God Father", 
+    "Lost Boys", 
+    "Ferris Bueller's Day Off"
+  ];
+  res.send(movies);
+});
 
 module.exports = router;
