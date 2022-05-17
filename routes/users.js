@@ -16,13 +16,6 @@ router.get("/name", (req, res, next) => {
   res.send(`Sonny Lee Valenzuela`);
 });
 
-// router.get("/q", (req, res, next) => {
-//   console.log("request query: ", req.query);
-//   const firstName = req.query.firstName
-//   const lastName = req.query.lastName
-//   res.send(firstName)
-// });
-
 router.get("/myfavoritemovies", (req, res) => {
   let movies = [
     "God Father", 
