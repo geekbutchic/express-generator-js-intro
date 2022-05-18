@@ -1,23 +1,43 @@
 var express = require("express");
 var router = express.Router();
-var blogs = require("../public/javascripts/sampleBlogs")
-const blogPosts = blogs.blogPosts
+var blogs = require("../public/javascripts/sampleBlogs");
+const blogPosts = blogs.blogPosts;
 
-router.get('/all', (req, res, next) => {
-res.json(blogPosts)
-})
+const users = [
+  {
+    name: "James",
+    role: "Instructor",
+  },
+  {
+    name: "Ginny",
+    role: "TA",
+  },
+];
 
-router.get('/blog:id', (req, res, next) => {
-    const id = req.params.
-    res.json(`${id}`)
-})
+router.get("/all", (req, res, next) => {
+  res.json(blogPosts);
+});
 
+router.get("/query/:blogNumber", (req, res) => {
+  const blogNumber = req.params.blogNumber;
+  const specificBlog = blogPosts[blogNumber];
+  console.log(specificBlog);
+  res.json(specificBlog);
+});
 
-// router.get("/q", (req, res, next) => {
+// router.get("/myname", (req, res) => {
 //   console.log("request query: ", req.query);
-//   const firstName = req.query.firstName
-//   const lastName = req.query.lastName
-//   res.send(firstName)
+//   const firstName = req.query.firstname;
+//   const lastName = req.query.lastname;
+//   console.log(`My Name: ${firstName}`);
+//   res.send(`The current user is: ${firstName} ${lastName}`);
+// });
+
+// router.get("/getone/:userNumber", (req, res) => {
+//   const userNumber = req.params.userNumber;
+//   const foundUser = users[userNumber];
+//   //JSON: Javascript Object Notation
+//   res.json(foundUser);
 // });
 
 module.exports = router;
