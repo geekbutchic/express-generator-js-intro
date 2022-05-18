@@ -1,4 +1,5 @@
 var express = require("express");
+const res = require("express/lib/response");
 var router = express.Router();
 var blogs = require("../public/javascripts/sampleBlogs");
 const blogPosts = blogs.blogPosts;
@@ -20,10 +21,11 @@ router.get("/all", (req, res, next) => {
 
 router.get("/query/:blogNumber", (req, res) => {
   const blogNumber = req.params.blogNumber;
-  const specificBlog = blogPosts[blogNumber];
+  const specificBlog = blogPosts[blogNumber -1];
   console.log(specificBlog);
   res.json(specificBlog);
 });
+
 
 // router.get("/myname", (req, res) => {
 //   console.log("request query: ", req.query);
