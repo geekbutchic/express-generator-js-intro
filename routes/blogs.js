@@ -3,7 +3,11 @@ var router = express.Router();
 var blogs = require("../public/javascripts/sampleBlogs");
 const blogPosts = blogs.blogPosts;
 
-router.get("/all", function (req, res, next) {
+router.get("/all", (req, res, next) => {
+    res.json(blogPosts)
+})
+
+router.get("/sorted", (req, res, next) => {
   const sortOrder = req.query.sort;
   blogPosts.sort((a, b) => {
     const aCreatedAt = new Date(a.createdAt);
@@ -16,8 +20,7 @@ router.get("/all", function (req, res, next) {
       if (aCreatedAt > bCreatedAt) {
         return 1;
       }
-    }
-    if (sortOrder === "desc") {
+    } else if (sortOrder === "desc") {
       if (aCreatedAt > bCreatedAt) {
         return -1;
       }
@@ -27,8 +30,7 @@ router.get("/all", function (req, res, next) {
     }
     return 0;
   });
-
-  res.send(blogPosts);
+  res.json(blogPosts)
 });
 
 router.get("/query/:blogNumber", (req, res) => {
