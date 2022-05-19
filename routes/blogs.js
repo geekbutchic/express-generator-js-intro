@@ -1,11 +1,11 @@
-var express = require("express");
-var router = express.Router();
-var blogs = require("../public/javascripts/sampleBlogs");
+const express = require("express");
+const router = express.Router();
+const blogs = require("../public/javascripts/sampleBlogs");
 const blogPosts = blogs.blogPosts;
 
-router.get("/all", (req, res, next) => {
-    res.json(blogPosts)
-})
+router.get("/all", (req, res, next) =>  {
+  res.json(blogPosts);
+});
 
 router.get("/sorted", (req, res, next) => {
   const sortOrder = req.query.sort;
@@ -30,7 +30,7 @@ router.get("/sorted", (req, res, next) => {
     }
     return 0;
   });
-  res.json(blogPosts)
+  res.json(blogPosts);
 });
 
 router.get("/query/:blogNumber", (req, res) => {
@@ -39,5 +39,28 @@ router.get("/query/:blogNumber", (req, res) => {
   console.log(specificBlog);
   res.json(specificBlog);
 });
+
+//RENDERS DATA - FOR POST-BLOG EJS
+router.get("/postblog", (req, res, next) => {
+  console.log("Post Body: ", req.body);
+  res.render("postBlog");
+});
+
+router.post("/submit", (req, res, next) => {
+  console.log(req.body)
+  console.log("Blog List Before: ", blogPosts)
+  const today = new Date()
+  const newPost = {
+      title: req.body.title,
+      text: req.body.text,
+      author: req.body.author,
+      createdAt: today.toISOString(),
+      id: String(blogPosts.length + 1)
+  }
+  blogPosts.push(newPost)
+  console.log("Blog List After: ", blogPosts)
+
+  res.send("OK");
+})
 
 module.exports = router;

@@ -5,6 +5,8 @@
         "getone",
         "lastname",
         "myfavoritemovies",
-        "myname"
-    ]
+        "myname",
+        "postblog"
+    ],
+    "liveServer.settings.port": 5501
 }

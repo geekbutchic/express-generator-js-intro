@@ -1,15 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+//GRABS HOMEPAGE
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'My Express Project!!!' });
 });
-
-// router.get('/datetime', function(req, res, next) {
-//   res.render('index', { title: 'My Express Project!!!' });
-// });
-
-
 
 module.exports = router;

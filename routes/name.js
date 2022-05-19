@@ -23,10 +23,9 @@ router.get("/myname", (req, res) => {
 router.get("/getone/:userNumber", (req, res) => {
   const userNumber = req.params.userNumber;
   const foundUser = users[userNumber];
-  //JSON: Javascript Object Notation
   res.json(foundUser);
 });
 
-router
+
 
 module.exports = router;
