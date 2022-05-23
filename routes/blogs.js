@@ -7,6 +7,8 @@ router.get("/all", (req, res, next) =>  {
   res.json(blogPosts);
 });
 
+//URL = blogs/sorted?sort=asc === 3, 4, 1, 5, 2
+//URL = blogs/sorted?sort=desc === 2, 5, 1, 4, 3
 router.get("/sorted", (req, res, next) => {
   const sortOrder = req.query.sort;
   blogPosts.sort((a, b) => {
@@ -54,7 +56,7 @@ router.post("/submit", (req, res, next) => {
       title: req.body.title,
       text: req.body.text,
       author: req.body.author,
-      createdAt: today.toISOString(),
+      createdAt: today,
       id: String(blogPosts.length + 1)
   }
   blogPosts.push(newPost)
@@ -62,5 +64,14 @@ router.post("/submit", (req, res, next) => {
 
   res.send("OK");
 })
+
+
+//DISPLAY BLOGS
+router.get("/displayblogs", (req, res, next) => {
+ console.log("Display Blogs: ", req.body);
+ res.render("displayBlogs")
+}) 
+
+
 
 module.exports = router;
